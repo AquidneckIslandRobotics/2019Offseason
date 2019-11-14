@@ -34,7 +34,8 @@ public class OI {
   Button button = new JoystickButton(stick, 2); 
   Button button2 = new JoystickButton(stick, 4);
   Button button3 = new JoystickButton(stick, 3);
-  
+  Button button4 = new JoystickButton(stick, 5);
+  Button button5 = new JoystickButton(stick, 6);
 
   //// CREATING BUTTONS
   // One type of button is a joystick button which is any button on a
@@ -62,6 +63,8 @@ public class OI {
   public OI(){
 button2.whenPressed(new FrisYeet());
 button3.whenPressed(new BackShooter());
+button4.whileHeld(new ShoulderLower());
+button5.whileHeld(new ShoulderRaise());
   }
 
   // Start the command when the button is released and let it run the command

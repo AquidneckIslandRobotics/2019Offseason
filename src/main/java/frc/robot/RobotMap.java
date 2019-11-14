@@ -34,7 +34,7 @@ public static final int bottomLoadingFollower3 = 12;
 public static final int forwardShooterLeader = 3;
 public static final int forwardShooterFollower = 4;
 public static final int backShooter = 1;
-
+public static final int shoulder = 2;
   // For example to map the left and right motors, you could define the
   // following variables to use with your drivetrain subsystem.
   // public static int leftMotor = 1;

@@ -22,7 +22,8 @@ import frc.robot.commands.SpinUp;
 public class Frisbeyeet extends Subsystem {
   TalonSRX forwardShooterLeader = new TalonSRX(RobotMap.forwardShooterLeader); 
   TalonSRX forwardShooterFollower = new TalonSRX(RobotMap.forwardShooterFollower); 
-  TalonSRX backShooter = new TalonSRX(RobotMap.backShooter); 
+  TalonSRX backShooter = new TalonSRX(RobotMap.backShooter);
+  TalonSRX shoulder = new TalonSRX(RobotMap.shoulder); 
 public Servo blue1 = new Servo(1);
 public Servo blue2 = new Servo(2);
 public Servo blue3 = new Servo(3);
@@ -30,6 +31,8 @@ public Servo red1 = new Servo(4);
 public Servo red2 = new Servo(5);
 public Servo red3 = new Servo(6);
 public DigitalInput backLimit = new DigitalInput(7);
+public DigitalInput upperLimit = new DigitalInput(9);
+public DigitalInput lowerLimit = new DigitalInput(8);
 
 
 
@@ -90,6 +93,10 @@ public void backShooter(){
 }
 public void backShooterOff(){
   backShooter.set(ControlMode.PercentOutput, 0);
+}
+public void setShoulder(double speed){ 
+  shoulder.set(ControlMode.PercentOutput, speed);
+
 }
 }
 
