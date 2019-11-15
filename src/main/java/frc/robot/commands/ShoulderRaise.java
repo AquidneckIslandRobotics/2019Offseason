@@ -12,7 +12,7 @@ import frc.robot.subsystems.*;
 
 public class ShoulderRaise extends Command {
   public ShoulderRaise() {
-    requires(Robot.mshoot);
+    requires(Robot.mShoot);
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
@@ -32,7 +32,7 @@ public class ShoulderRaise extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-   if (Robot.mshoot.lowerLimit.get() == true){
+   if (Robot.mShoot.upperLimit.get() == true){
       return true;
     } else {
       return false;
@@ -42,13 +42,13 @@ public class ShoulderRaise extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.mshoot.setShoulder(0);
+    Robot.mShoot.setShoulder(0);
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    Robot.mshoot.setShoulder(0);
+    Robot.mShoot.setShoulder(0);
   }
 }

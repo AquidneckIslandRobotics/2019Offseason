@@ -83,6 +83,7 @@ public class Robot extends TimedRobot {
   @Override
   public void disabledPeriodic() {
     Scheduler.getInstance().run();
+    SmartDashboard.putBoolean("upperLimit", mShoot.upperLimit.get());
   }
 
   /**
@@ -140,7 +141,8 @@ public class Robot extends TimedRobot {
     Scheduler.getInstance().run();
     SmartDashboard.putData("Red Servo Inside", mShoot);
     SmartDashboard.putData("Limit Switch", mShoot.backLimit);
-
+    SmartDashboard.putBoolean("upperLimit", mShoot.upperLimit.get());
+    SmartDashboard.putBoolean("lowerLimit", mShoot.lowerLimit.get());
   // I've reached the maineframe
   }
 
