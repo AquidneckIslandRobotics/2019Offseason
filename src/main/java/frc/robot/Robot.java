@@ -143,7 +143,8 @@ public class Robot extends TimedRobot {
     SmartDashboard.putData("Limit Switch", mShoot.backLimit);
     SmartDashboard.putBoolean("upperLimit", mShoot.upperLimit.get());
     SmartDashboard.putBoolean("lowerLimit", mShoot.lowerLimit.get());
-  // I've reached the maineframe
+    SmartDashboard.putNumber("Right Encoder", mDrive.getRightEncoder());
+    SmartDashboard.putNumber("Left Encoder", mDrive.getLeftEncoder());
   }
 
   /**

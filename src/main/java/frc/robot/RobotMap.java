@@ -29,6 +29,11 @@ public static final int bottomLoadingLeader = 9;
 public static final int bottomLoadingFollower1 = 10;
 public static final int bottomLoadingFollower2 = 11;
 public static final int bottomLoadingFollower3 = 12;
+public static final int encoderRA = 2;
+public static final int encoderRB = 3;
+public static final int encoderLA = 0;
+public static final int encoderLB = 1;
+
 
 // Firing Motors
 public static final int forwardShooterLeader = 3;
