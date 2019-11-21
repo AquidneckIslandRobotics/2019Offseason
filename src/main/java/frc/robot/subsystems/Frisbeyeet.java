@@ -39,9 +39,9 @@ public DigitalInput lowerLimit = new DigitalInput(8);
   public boolean shooting = true; 
 //bruh
   public void Shooter() {
-    shoulder.
-//programming words(); 
+    //shoulder.
 
+    
   }
 
 
