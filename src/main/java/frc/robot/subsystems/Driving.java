@@ -50,12 +50,17 @@ public void inverseCheesyDrive2() {
 diffDrive.curvatureDrive(Robot.m_oi.getSpeed(), Robot.m_oi.getRotation(), Robot.m_oi.getQuickTurn());
 }
 
+
 public double getRightEncoder(){
   return rightEncoder.get();
 }
 
 public double getLeftEncoder(){
   return leftEncoder.get();
+}
+public void startDriveMotors() {
+  leftLeader.set(0.5); 
+  rightLeader.set(-0.5); 
 }
 
 public void stopDriveMotors() {
