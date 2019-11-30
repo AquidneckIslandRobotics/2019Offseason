@@ -34,6 +34,7 @@ public class Robot extends TimedRobot {
   public static OI m_oi;
   public static Subsystem m_Subsystem;
   public static Frisbeyeet mShoot = new Frisbeyeet(); 
+  // AHRS ahrs; 
 
 
  // public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
@@ -154,6 +155,5 @@ public class Robot extends TimedRobot {
   @Override
   public void testPeriodic() {
   
-    //programming things are epiic gamer moments
   }
 }

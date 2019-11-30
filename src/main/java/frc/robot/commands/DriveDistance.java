@@ -20,6 +20,7 @@ public class DriveDistance extends Command {
   public final double tenFootDrive = 1550; 
   public double distanceInFeet; 
   public double distanceInClicks; 
+  public double currentVelocity;
   public DriveDistance(double distanceInFeet) {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
@@ -35,18 +36,32 @@ public class DriveDistance extends Command {
     initialLeftEncoderPosition = Robot.mDrive.getLeftEncoder(); 
     initialRightEncoderPosition = Robot.mDrive.getRightEncoder(); 
     SmartDashboard.putNumber("Initial Encoder", initialRightEncoderPosition); 
+    currentVelocity = 0;
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.mDrive.startDriveMotors(); 
+    if (currentVelocity > 0.5){
+      currentVelocity = 0.5;
+    } else{
+      double halfClicks = 0.5*distanceInClicks + initialRightEncoderPosition;
+      if (halfClicks > Robot.mDrive.getRightEncoder()){
+        //if the current clicks are greater than the clicks desired stop increasing the speed
+        currentVelocity = ((Robot.mDrive.getRightEncoder()-initialRightEncoderPosition)/155)*0.09+0.2;
+      } else {
+        currentVelocity = ((Robot.mDrive.getRightEncoder()-initialRightEncoderPosition)/155)*-0.09+.8; 
+      }
+    }
+    SmartDashboard.putNumber("Velocity",currentVelocity);
+    Robot.mDrive.startDriveMotors(currentVelocity); 
   }
-
+  
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
     if (Robot.mDrive.getRightEncoder() > initialRightEncoderPosition + distanceInClicks) {
+      SmartDashboard.putNumber("Velocity",0);
       return true; 
     }
     else {
