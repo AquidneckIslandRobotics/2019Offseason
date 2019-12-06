@@ -38,7 +38,7 @@ public class OI {
   Button button5 = new JoystickButton(stick, 6);
   Button button7 = new JoystickButton(stick, 7); 
   Button button8 = new JoystickButton(stick, 8); 
-
+  Button button9 = new JoystickButton(stick, 9);
   //// CREATING BUTTONS
   // One type of button is a joystick button which is any button on a
   //// joystick.
@@ -66,10 +66,13 @@ public class OI {
 button2.whenPressed(new FrisYeet());
 button3.whenPressed(new BackShooter());
 button4.whileHeld(new ShoulderLower());
+//nice
 button5.whileHeld(new ShoulderRaise());
 button7.whenPressed(new DriveDistance(10));
 button8.whenPressed(new DriveDistance(5));
+button9.whenPressed(new PIDDrive());
   }
+
 
   // Start the command when the button is released and let it run the command
   // until it is finished as determined by it's isFinished method.

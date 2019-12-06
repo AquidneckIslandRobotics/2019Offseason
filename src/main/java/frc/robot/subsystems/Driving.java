@@ -8,6 +8,7 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.command.Command;
 //import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -36,7 +37,8 @@ public class Driving extends Subsystem {
       Encoder rightEncoder = new Encoder(RobotMap.encoderRA,RobotMap.encoderRB);
       Encoder leftEncoder = new Encoder(RobotMap.encoderLA,RobotMap.encoderLB);
      DifferentialDrive diffDrive = new DifferentialDrive(leftLeader, rightLeader); 
-
+     public PIDController rPIDDrivingController = new PIDController(0.078, 0, 0, rightEncoder, rightLeader);
+     public PIDController lPIDDrivingController = new PIDController(0.078, 0, 0, leftEncoder, leftLeader);
      
       public boolean drivingForwards = true;
     
