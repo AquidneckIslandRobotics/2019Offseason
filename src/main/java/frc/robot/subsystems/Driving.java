@@ -34,8 +34,8 @@ public class Driving extends Subsystem {
       WPI_TalonSRX leftFollower = new WPI_TalonSRX(RobotMap.leftFollower);
       WPI_TalonSRX rightLeader = new WPI_TalonSRX(RobotMap.rightLeader);
       WPI_TalonSRX rightFollower = new WPI_TalonSRX(RobotMap.rightFollower);
-      Encoder rightEncoder = new Encoder(RobotMap.encoderRA,RobotMap.encoderRB);
-      Encoder leftEncoder = new Encoder(RobotMap.encoderLA,RobotMap.encoderLB);
+      public Encoder rightEncoder = new Encoder(RobotMap.encoderRA,RobotMap.encoderRB);
+      public Encoder leftEncoder = new Encoder(RobotMap.encoderLA,RobotMap.encoderLB);
      DifferentialDrive diffDrive = new DifferentialDrive(leftLeader, rightLeader); 
      public PIDController rPIDDrivingController = new PIDController(0.078, 0, 0, rightEncoder, rightLeader);
      public PIDController lPIDDrivingController = new PIDController(0.078, 0, 0, leftEncoder, leftLeader);

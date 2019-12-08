@@ -39,9 +39,15 @@ public class PIDDrive extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    //Robot.mDrive.lPIDDrivingController.
-    return false;
-
+   // Robot.mDrive.lPIDDrivingController
+  // return !(Robot.mDrive.lPIDDrivingController.isEnabled());
+  /*if(Robot.mDrive.rPIDDrivingController.onTarget()) {
+     return true; 
+   }
+   else return false; 
+   //return false;
+*/
+   return false; 
   }
 
   // Called once after isFinished returns true
