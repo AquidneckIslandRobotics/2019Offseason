@@ -60,9 +60,15 @@ public double getRightEncoder(){
 public double getLeftEncoder(){
   return leftEncoder.get();
 }
+
+public void resetEncoders() {
+  rightEncoder.reset();
+  leftEncoder.reset();
+}
 public void startDriveMotors(double velocity) {
-  leftLeader.set(velocity); 
-  rightLeader.set(-1*velocity); 
+ // leftLeader.set(velocity); 
+  //rightLeader.set(-1*velocity); 
+  diffDrive.tankDrive(velocity, velocity);
 }
 
 public void stopDriveMotors() {

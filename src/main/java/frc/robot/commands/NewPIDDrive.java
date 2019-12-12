@@ -33,7 +33,7 @@ public class NewPIDDrive extends Command {
   public EncoderPIDSource leftDriveSource, rightDriveSource; 
   public SpeedOutput leftSpeedOutput, rightSpeedOutput; 
   private double mTargetClicks; 
-  private Timer mTimer; 
+  private Timer mTimer = new Timer(); 
   public NewPIDDrive(double distanceInFeet) {
   //public NewPIDDrive(double targetFeet) {
     // Use requires() here to declare subsystem dependencies
@@ -42,14 +42,14 @@ public class NewPIDDrive extends Command {
     this.distanceInFeet = distanceInFeet; 
 
     distanceInClicks = 155 * distanceInFeet;
-
+    mTargetClicks = distanceInClicks; 
 
     leftDriveSource = new EncoderPIDSource(Robot.mDrive.leftEncoder, PIDSourceType.kDisplacement); 
     leftSpeedOutput = new SpeedOutput(); 
-    leftDrivePID = new PIDController(0.078, 0, 0, leftDriveSource, leftSpeedOutput); 
+    leftDrivePID = new PIDController(0.3, 0, 0, leftDriveSource, leftSpeedOutput); 
     rightDriveSource = new EncoderPIDSource(Robot.mDrive.rightEncoder, PIDSourceType.kDisplacement); 
     rightSpeedOutput = new SpeedOutput(); 
-    rightDrivePID = new PIDController(0.078, 0, 0, rightDriveSource, rightSpeedOutput); 
+    rightDrivePID = new PIDController(0.3, 0, 0, rightDriveSource, rightSpeedOutput); 
     
   }
 
@@ -61,13 +61,14 @@ public class NewPIDDrive extends Command {
   @Override
   protected void initialize() {
     //Robot.mDrive.resetDriveEncoders();
+    Robot.mDrive.resetEncoders();
    leftDrivePID.setAbsoluteTolerance(40);
   leftDrivePID.setContinuous(false);
-  leftDrivePID.setOutputRange(-1, 1);
+  leftDrivePID.setOutputRange(-0.6, 0.6);
   leftDrivePID.setSetpoint(mTargetClicks);
   rightDrivePID.setAbsoluteTolerance(40);
   rightDrivePID.setContinuous(false);
-  rightDrivePID.setOutputRange(-1, 1);
+  rightDrivePID.setOutputRange(-0.6, 0.6);
   rightDrivePID.setSetpoint(mTargetClicks);
   //SmartDashboard.putNumber("Target Clicks (L)", leftDrivePID.getSetpoint());
  // SmartDashboard.putNumber("Initial Encoder", initialRightEncoderPosition); 
@@ -79,16 +80,17 @@ public class NewPIDDrive extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    double velocity = leftSpeedOutput.getSpeed();
+    double velocity = rightSpeedOutput.getSpeed();
    // double rSpeed = -rightSpeedOutput.getSpeed();
-    Robot.mDrive.startDriveMotors(velocity);
+   Robot.mDrive.startDriveMotors(velocity);
+   //Robot.mDrive.startDriveMotors(1);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-      if(!leftDrivePID.onTarget() || !rightDrivePID.onTarget()) mTimer.reset();
-      if(mTimer.get() > 0.35) return true;
+      if(/*!leftDrivePID.onTarget() || */ !rightDrivePID.onTarget()) mTimer.reset();
+      if(mTimer.get() > 1) return true;
       else return false;
   
     }
@@ -106,5 +108,6 @@ public class NewPIDDrive extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    end(); 
   }
 }
